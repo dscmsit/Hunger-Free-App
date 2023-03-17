@@ -5,8 +5,8 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Padding(
+      children: const <Widget>[
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextField(
             decoration: InputDecoration(
@@ -16,14 +16,34 @@ class PostScreen extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Enter your username',
-            ),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: IconButton(
+            icon: Icon(Icons.image),
+            tooltip: 'Add Image',
+            onPressed: null,
+        )
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: IconButton(
+            onPressed: null, 
+            tooltip: 'Add Document',
+            icon: Icon(Icons.document_scanner))
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: IconButton(
+            onPressed: null, 
+            tooltip: 'Add Video',
+            icon: Icon(Icons.video_file))
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: IconButton(
+            onPressed: null, 
+            tooltip: 'Add Location',
+            icon: Icon(Icons.location_city))
+        )
       ],
     );
   }
