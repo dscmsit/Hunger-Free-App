@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868840144197",
+    "project_id": "hungerfree-2d46e",
+    "storage_bucket": "hungerfree-2d46e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868840144197:android:1e5ea59eff694c192c922c",
+        "android_client_info": {
+          "package_name": "com.gdscmsit.nohunger.no_hunger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868840144197-9712f999a0cklmpb6akdee7k3rgqaelq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9SaSHEU3ANOv8io15wGQhBNbLZ2vT_Zg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868840144197-9712f999a0cklmpb6akdee7k3rgqaelq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
