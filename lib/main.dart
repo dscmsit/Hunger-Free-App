@@ -1,12 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'screen/SplashScreen.dart';
-=======
 import 'package:no_hunger/sign_up.dart';
->>>>>>> 2301f0914e67d3077a555c838aa249ef3187d6ba
-
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -22,16 +18,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return  const MaterialApp(
-      home: SplashScreen(),
-    );
-  }
-}
-
-
-
-=======
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
@@ -39,4 +25,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
->>>>>>> 2301f0914e67d3077a555c838aa249ef3187d6ba
+
