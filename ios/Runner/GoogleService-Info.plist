@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>868840144197-7qeq3g3soq5ccvsgm5t6i86kfq9dqr8o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.868840144197-7qeq3g3soq5ccvsgm5t6i86kfq9dqr8o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCCYMUCSSgO4-bN5W4mzyjcrnFdbwYIcf4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>868840144197</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gdscmsit.nohunger.noHunger</string>
+	<key>PROJECT_ID</key>
+	<string>hungerfree-2d46e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hungerfree-2d46e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:868840144197:ios:c06593a79ad0eaf42c922c</string>
+</dict>
+</plist>
