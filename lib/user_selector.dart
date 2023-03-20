@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:no_hunger/feeds.dart';
-import 'package:no_hunger/post_screen.dart';
 
 class UserSelector extends StatelessWidget {
+  const UserSelector({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
@@ -26,13 +27,7 @@ class UserSelector extends StatelessWidget {
           const SizedBox(height: 30),
           ElevatedButton(
             style: style,
-            onPressed: (){
-              // Use the Navigator to push a new screen onto the stack
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PostScreen()),
-              );
-            },
+            onPressed: null,
             child: const Text('distributor'),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,10 +15,11 @@ void checkAuthState() {
 Future<void> signUpAccount(String email, String password) async {
   try {
     final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+    addUserToDatabase(email);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
       print('The password provided is too weak.');
@@ -27,6 +29,14 @@ Future<void> signUpAccount(String email, String password) async {
   } catch (e) {
     print(e);
   }
+}
+
+void addUserToDatabase(String email) async {
+  var db = FirebaseFirestore.instance;
+  final user = <String, dynamic>{
+    "first": email,
+  };
+  await db.collection("users").add(user);
 }
 
 Future<void> logInAccount(String email, String password) async {
@@ -52,7 +62,7 @@ Future<UserCredential> signInWithGoogle() async {
 
   // Obtain the auth details from the request
   final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
+  await googleUser?.authentication;
 
   // Create a new credential
   final credential = GoogleAuthProvider.credential(
