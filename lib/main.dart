@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screen/onBoardingScreen.dart';
 import 'screen/SplashScreen.dart';
 import 'package:no_hunger/sign_up.dart';
 import 'firebase_options.dart';
@@ -22,9 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: UserSelector(),
+      home: const SignUp(),
     );
   }
 }
-
-r
