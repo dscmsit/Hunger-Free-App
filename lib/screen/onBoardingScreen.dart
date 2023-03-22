@@ -44,7 +44,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
       SystemUiOverlay.bottom]);
     return  Scaffold(
-      drawer: NavBar(),
+     
       appBar: AppBar(
 
         elevation: 0,
