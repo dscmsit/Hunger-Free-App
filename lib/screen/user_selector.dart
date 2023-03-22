@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:no_hunger/feeds.dart';
+import 'package:no_hunger/screen/feeds.dart';
 
 class UserSelector extends StatelessWidget {
   const UserSelector({Key? key}) : super(key: key);
