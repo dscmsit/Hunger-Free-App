@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:no_hunger/screen/NavBar.dart';
 
 
 class OnBoardingScreen extends StatefulWidget {
@@ -43,6 +44,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
       SystemUiOverlay.bottom]);
     return  Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
 
         elevation: 0,
