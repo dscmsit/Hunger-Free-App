@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:no_hunger/screen/NavBar.dart';
 
 
 class OnBoardingScreen extends StatefulWidget {
@@ -56,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       
       body: Stack(children: [
-        SizedBox(
+      const  SizedBox(
           height: 30,
         ),
         PageView.builder(scrollDirection: Axis.horizontal,
