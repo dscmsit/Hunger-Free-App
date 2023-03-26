@@ -5,6 +5,7 @@ import 'package:no_hunger/screen/onBoardingScreen.dart';
 import 'screen/SplashScreen.dart';
 import 'package:no_hunger/sign_up.dart';
 import 'firebase_options.dart';
+import 'screen/user_selector.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: const OnBoardingScreen(),
+      home: const SignUp(),
     );
   }
 }
-
