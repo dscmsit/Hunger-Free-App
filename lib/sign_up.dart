@@ -4,6 +4,7 @@ import 'package:no_hunger/log_in.dart';
 import 'firebase_login_and_signup.dart';
 
 class SignUp extends StatefulWidget {
+  static const String id = "SignUpScreen";
   const SignUp({Key? key}) : super(key: key);
 
   @override

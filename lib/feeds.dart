@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FeedItem {
+  static const String id = "FeedItemScreen";
   final String title;
   final String description;
 

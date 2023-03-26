@@ -4,6 +4,7 @@ import 'package:no_hunger/screen/NavBar.dart';
 
 
 class OnBoardingScreen extends StatefulWidget {
+  static const String id = "OnBoardingScreen";
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
@@ -44,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
       SystemUiOverlay.bottom]);
     return  Scaffold(
-     
+
       appBar: AppBar(
 
         elevation: 0,
