@@ -11,11 +11,11 @@ class ProfilePage extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: ,
-            ),
+            // shape: BoxShape.circle,
+            // image: DecorationImage(
+            //   fit: BoxFit.cover,
+            //   // image: ,
+            // ),
           ),
         ),
         Column(
