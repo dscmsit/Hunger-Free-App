@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:no_hunger/screen/feeds.dart';
 
 class UserSelector extends StatelessWidget {
-  static const String id = "UserSelectorScreen";
+
   const UserSelector({Key? key}) : super(key: key);
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 
 class OnBoardingScreen extends StatefulWidget {
-  static const String id = "OnBoardingScreen";
+
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
