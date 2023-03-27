@@ -104,7 +104,10 @@ class _CollectorDistributorState extends State<CollectorDistributor> {
                     alignment: AlignmentDirectional(0, 0),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(80, 0, 0, 0),
-                      child: Text(
+                      child:
+
+                      // iss text widget pe onClick lagega
+                      Text(
                         'Distributor',
                         style: TextStyle(
                           fontWeight: FontWeight.bold
@@ -117,7 +120,9 @@ class _CollectorDistributorState extends State<CollectorDistributor> {
                     alignment: AlignmentDirectional(0.95, 0),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
-                      child: Text(
+                      child:
+                      // iss text widget pe onClick lagega
+                      Text(
                         'Collector',
                           style: TextStyle(
                               fontWeight: FontWeight.bold
