@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:no_hunger/log_in.dart';
+import 'package:no_hunger/screen/collector_distributor_screen.dart';
 import 'package:no_hunger/screen/onBoardingScreen.dart';
 import 'package:no_hunger/screen/profile_page.dart';
 import 'package:no_hunger/screen/user_selector.dart';
@@ -22,6 +23,8 @@ class RoutesBuilder {
         return MaterialPageRoute(builder: (context) =>  ProfilePage());
       case RouteNames.userSelectorScreen:
         return MaterialPageRoute(builder: (context) => const UserSelector());
+      case RouteNames.collectorDistributorScreen:
+        return MaterialPageRoute(builder: (context) => const CollectorDistributor());
       default :
         return MaterialPageRoute(builder:
         (context){
