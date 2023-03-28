@@ -18,7 +18,12 @@ class _MyFormScreenState extends State<MyFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Form'),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+        title: Text('My Form',
+        style: TextStyle(
+          color: Colors.white
+        ),),
       ),
       body: Center(
         child:
@@ -132,11 +137,12 @@ class _MyFormScreenState extends State<MyFormScreen> {
                     ),
                     SizedBox(height: 16.0),
                     Center(
-                      child: TextButton(
+                      child: ElevatedButton(
+
 
                           style: TextButton.styleFrom(
 
-
+                            minimumSize: Size(200,60),
                             primary: Colors.white,
                             backgroundColor: Colors.blueAccent,
                             textStyle: TextStyle(
