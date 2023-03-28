@@ -9,5 +9,6 @@ class RouteNames {
   static const String feedItemScreen = "Feed_Item_Screen";
   static const String userSelectorScreen = "User_Selector_Screen";
   static const String collectorDistributorScreen = "Collector_Distributor_Screen";
+  static const String profileScreenOriginal = "Profile_Page_Screen_Original";
 
 }

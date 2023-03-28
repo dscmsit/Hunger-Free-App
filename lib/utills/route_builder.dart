@@ -5,6 +5,7 @@ import 'package:no_hunger/log_in.dart';
 import 'package:no_hunger/screen/collector_distributor_screen.dart';
 import 'package:no_hunger/screen/onBoardingScreen.dart';
 import 'package:no_hunger/screen/profile_page.dart';
+import 'package:no_hunger/screen/profile_page_@.dart';
 import 'package:no_hunger/screen/user_selector.dart';
 import 'package:no_hunger/sign_up.dart';
 import 'package:no_hunger/utills/route_names.dart';
@@ -25,6 +26,8 @@ class RoutesBuilder {
         return MaterialPageRoute(builder: (context) => const UserSelector());
       case RouteNames.collectorDistributorScreen:
         return MaterialPageRoute(builder: (context) => const CollectorDistributor());
+      case RouteNames.profileScreenOriginal:
+        return MaterialPageRoute(builder: (context) => const ProfilePageOrignial());
       default :
         return MaterialPageRoute(builder:
         (context){
