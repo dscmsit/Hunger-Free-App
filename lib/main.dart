@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screen/collector_distributor_screen.dart';
 import 'package:no_hunger/screen/onBoardingScreen.dart';
+import 'package:no_hunger/screen/profile_page_@.dart';
 import 'package:no_hunger/utills/route_builder.dart';
 import 'package:no_hunger/utills/route_names.dart';
 import 'screen/SplashScreen.dart';
@@ -26,9 +27,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
+      home:const ProfilePageOrignial(),
 
-      initialRoute: RouteNames.collectorDistributorScreen,
-      onGenerateRoute: RoutesBuilder.generateRoute,
+      // initialRoute: RouteNames.collectorDistributorScreen,
+      // onGenerateRoute: RoutesBuilder.generateRoute,
     );
   }
 }
