@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      initialRoute: RouteNames.onBoardingScreen,
+      initialRoute: RouteNames.newPost,
       // home: UserSetup(),
       onGenerateRoute: RoutesBuilder.generateRoute,
     );
