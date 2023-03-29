@@ -1,171 +1,156 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:no_hunger/utills/firebase_login_and_signup.dart';
 
-class MyFormScreen extends StatefulWidget {
+class NewPost extends StatefulWidget {
+  const NewPost({Key? key}) : super(key: key);
+
   @override
-  _MyFormScreenState createState() => _MyFormScreenState();
+  _NewPostState createState() => _NewPostState();
 }
 
-class _MyFormScreenState extends State<MyFormScreen> {
-  final _formKey = GlobalKey<FormState>();
+class _NewPostState extends State<NewPost> {
+  final TextEditingController _foodNameController = TextEditingController();
+  final TextEditingController _phoneNoController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
-  String? _username;
-  String? _email;
-  String? _phoneNo;
-  String? _address;
-  String? _foodItems;
+  void loadUserInfo() async {
+    // Get the current user's information from Firebase and display it
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userInfo = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      setState(() {
+        _addressController.text = userInfo['Address'];
+        _phoneNoController.text = userInfo['Phone No'];
+        _nameController.text = userInfo['Name'];
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserInfo();
+  }
+
+  void _showPicker(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SafeArea(
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading: const Icon(Icons.photo_library),
+                    title: const Text('Gallery'),
+                    onTap: () {
+                      //Gallery Permission
+                    }),
+                ListTile(
+                  leading: const Icon(Icons.photo_camera),
+                  title: const Text('Camera'),
+                  onTap: () {
+                    //Camera Permission
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        centerTitle: true,
-        title: Text('My Form',
-        style: TextStyle(
-          color: Colors.white
-        ),),
+        title: const Text('New Post'),
       ),
-      body: Center(
-        child:
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your username',
-                          prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your username';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        setState(() {
-                          _username = value;
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email',
-                          prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        setState(() {
-                          _email = value;
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your phone number',
-                          prefixIcon: Icon(Icons.phone),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your phone number';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        setState(() {
-                          _phoneNo = value;
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your address',
-                          prefixIcon: Icon(Icons.home),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your address';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        setState(() {
-                          _address = value;
-                        });
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your food items',
-                          prefixIcon: Icon(Icons.restaurant_menu),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your food items';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        setState(() {
-                          _foodItems = value;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    Center(
-                      child: ElevatedButton(
-
-
-                          style: TextButton.styleFrom(
-
-                            minimumSize: Size(200,60),
-                            primary: Colors.white,
-                            backgroundColor: Colors.blueAccent,
-                            textStyle: TextStyle(
-                              color :Colors.white,
-                              fontSize: 20
-                            )
-                          ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            // Do something with the user input
-                            // e.g. send it to a server, update state, etc.
-                          }
-                        },
-                        child: Text('Submit'),
-                      ),
-                    ),
-                  ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Food Details',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 10.0),
+                TextField(
+                  controller: _foodNameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter food name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+                ListTile(
+                  leading: const Icon(Icons.image),
+                  title: const Text('Image'),
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                ),
+                const SizedBox(height: 20.0),
+                const Text(
+                  'Contact Details',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                TextField(
+                  enabled: false,
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                TextField(
+                  controller: _phoneNoController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter phone number',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                TextField(
+                  controller: _addressController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter address',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await post(_nameController.text, _foodNameController.text, _phoneNoController.text,
+                          _addressController.text, 'Empty');
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Post'),
+                  ),
+                ),
+              ],
             ),
           ),
-
+        ),
       ),
     );
   }
