@@ -10,16 +10,13 @@ import 'package:no_hunger/screen/user_setup_screen.dart';
 import 'package:no_hunger/utills/auth_gate.dart';
 import 'package:no_hunger/utills/route_names.dart';
 
-import '../main.dart';
-
 class RoutesBuilder {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());
-      case RouteNames.profileScreen:
-        return MaterialPageRoute(builder: (context) => ProfilePage());
+
       case RouteNames.profileScreenOriginal:
         return MaterialPageRoute(
             builder: (context) => const ProfilePageOriginal());

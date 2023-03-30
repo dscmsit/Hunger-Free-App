@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/model/food_item.dart';
 import 'package:no_hunger/screen/NavBar.dart';
@@ -14,12 +13,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // Define a list of food items
-  List<FoodItem> _foodItems = [];
+  final List<FoodItem> _foodItems = [];
 
   Future<void> getPosts() async {
     _foodItems.clear();
     var db = FirebaseFirestore.instance;
-    var auth = FirebaseAuth.instance;
     db.collection("posts").get().then(
       (querySnapshot) {
         print("Successfully completed");
@@ -29,18 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
           String address = docSnapshot.get('Address');
           String food = docSnapshot.get('FoodDetails');
           String phoneNo = docSnapshot.get('PhoneNo');
+          String dateAndTime = docSnapshot.get('Date');
           FoodItem item = FoodItem(
               name: name,
               food: food,
               image: image,
               address: address,
-              phoneNo: phoneNo);
+              phoneNo: phoneNo,
+              dateAndTime: dateAndTime);
+
           setState(() {
             _foodItems.add(item);
           });
-
-          // print('${docSnapshot.id} => ${docSnapshot.data()}');
         }
+        _foodItems.sort((a, b) => b.dateAndTime.compareTo(a.dateAndTime));
       },
       onError: (e) => print("Error completing: $e"),
     );
@@ -73,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: const Icon(Icons.add),
       ),
-      drawer: NavBar(),
       body: RefreshIndicator(
         onRefresh: () async {
           await getPosts();
@@ -107,6 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(_foodItems[index].phoneNo),
                   const SizedBox(height: 5.0),
                   Text(_foodItems[index].address),
+                  const SizedBox(height: 5.0),
+                  Text(_foodItems[index].dateAndTime),
                 ],
               ),
             );

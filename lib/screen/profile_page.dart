@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/utills/firebase_login_and_signup.dart';
+import 'package:no_hunger/utills/route_names.dart';
 
 class ProfilePageOriginal extends StatefulWidget {
   const ProfilePageOriginal({Key? key}) : super(key: key);
@@ -66,6 +67,7 @@ class _ProfilePageOriginalState extends State<ProfilePageOriginal> {
             icon: const Icon(Icons.logout),
             onPressed: () {
               signOutAccount();
+              Navigator.pushReplacementNamed(context, RouteNames.authenticationScreen);
             },
           ),
         ],
@@ -81,21 +83,11 @@ class _ProfilePageOriginalState extends State<ProfilePageOriginal> {
                 children: [
                   Center(
                     child: Stack(
-                      children: [
-                        const CircleAvatar(
+                      children: const [
+                        CircleAvatar(
                           radius: 70,
                           backgroundImage:
                               AssetImage('assets/images/google_logo.png'),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              // Add logic to update the profile picture here
-                            },
-                          ),
                         ),
                       ],
                     ),

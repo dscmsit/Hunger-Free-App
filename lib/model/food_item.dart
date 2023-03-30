@@ -8,11 +8,14 @@ class FoodItem {
   final String address;
   final String phoneNo;
 
+  final String dateAndTime;
+
   FoodItem({
     required this.name,
     required this.food,
     required this.image,
     required this.address,
-    required this.phoneNo
+    required this.phoneNo,
+    required this.dateAndTime
   });
 }

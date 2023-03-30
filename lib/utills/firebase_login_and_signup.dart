@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 void checkAuthState() {
@@ -125,16 +126,37 @@ Future<bool> signUpWithGoogle() async {
 Future<void> post(String name, String foodName, String phoneNo, String address,
     String image) async {
   var db = FirebaseFirestore.instance;
-  var auth = FirebaseAuth.instance;
   String randomId = const Uuid().v4();
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('yyyy-MM-dd , kk:mm').format(now);
 
   final user = <String, dynamic>{
     "Name": name,
     "FoodDetails": foodName,
     "PhoneNo": phoneNo,
     "Address": address,
-    "Image": image
+    "Image": image,
+    "Date": formattedDate
   };
 
   await db.collection("posts").doc(randomId).set(user);
+}
+
+Future<bool> signInWithGoogle() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  await FirebaseAuth.instance.signInWithCredential(credential);
+  return true;
 }

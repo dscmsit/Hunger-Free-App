@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../utills/firebase_login_and_signup.dart';
@@ -14,7 +12,6 @@ class CollectorDistributor extends StatefulWidget {
 
 class _CollectorDistributorState extends State<CollectorDistributor> {
   @override
-
   void initState() {
     super.initState();
   }
@@ -75,7 +72,8 @@ class _CollectorDistributorState extends State<CollectorDistributor> {
                         GestureDetector(
                           onTap: () {
                             addUserTypeToFirestore('Distributor');
-
+                            Navigator.pushReplacementNamed(
+                                context, RouteNames.userDetails);
                           },
                           child: Container(
                             width: 100,
@@ -99,6 +97,8 @@ class _CollectorDistributorState extends State<CollectorDistributor> {
                         GestureDetector(
                           onTap: () {
                             addUserTypeToFirestore('Collector');
+                            Navigator.pushReplacementNamed(
+                                context, RouteNames.userDetails);
                           },
                           child: Container(
                             width: 100,

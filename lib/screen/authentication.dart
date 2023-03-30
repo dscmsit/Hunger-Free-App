@@ -125,7 +125,7 @@ class _LogInState extends State<LogIn> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: OutlinedButton(
                 onPressed: () {
-                  signUpWithGoogle();
+                  signInWithGoogle();
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

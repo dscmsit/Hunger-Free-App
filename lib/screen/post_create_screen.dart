@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:no_hunger/utills/firebase_login_and_signup.dart';
+import 'package:uuid/uuid.dart';
 
 class NewPost extends StatefulWidget {
   const NewPost({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class _NewPostState extends State<NewPost> {
   final TextEditingController _phoneNoController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  CollectionReference _reference =   FirebaseFirestore.instance.collection('{}');
-  String imageUrl = '';
+  String imageUrl = 'Empty';
+
   void loadUserInfo() async {
     // Get the current user's information from Firebase and display it
     User? user = FirebaseAuth.instance.currentUser;
@@ -36,6 +37,9 @@ class _NewPostState extends State<NewPost> {
       });
     }
   }
+
+  final _picker = ImagePicker();
+  File? image;
 
   @override
   void initState() {
@@ -53,45 +57,65 @@ class _NewPostState extends State<NewPost> {
                 ListTile(
                     leading: const Icon(Icons.photo_library),
                     title: const Text('Gallery'),
-                    onTap: () {
-                      //Gallery Permission
+                    onTap: () async {
+                      final XFile? pickedImage =
+                          await _picker.pickImage(source: ImageSource.gallery);
+                      if (pickedImage == null) return;
+                      setState(() {
+                        image = File(pickedImage.path);
+                      });
+                      Reference referenceRoot = FirebaseStorage.instance.ref();
+                      Reference referenceDirImages =
+                          referenceRoot.child('images');
+
+                      //Create a reference for the image to be stored
+                      Reference referenceImageToUpload =
+                          referenceDirImages.child(const Uuid().v4());
+                      //Handle errors/success
+                      try {
+                        //Store the file
+                        await referenceImageToUpload.putFile(image!);
+                        //Success: get the download URL
+                        imageUrl =
+                            await referenceImageToUpload.getDownloadURL();
+                      } catch (error) {
+                        print(error);
+                      }
                     }),
                 ListTile(
                   leading: const Icon(Icons.photo_camera),
                   title: const Text('Camera'),
-                  onTap:  () async {
+                  onTap: () async {
                     //Camera Permission
-                    ImagePicker imagePicker = ImagePicker();
-                    XFile? file = await imagePicker.pickImage(source: ImageSource.camera);
+                    XFile? file =
+                        await _picker.pickImage(source: ImageSource.camera);
 
                     if (file == null) return;
-                    String uniqueFileName =
-                    DateTime.now().millisecondsSinceEpoch.toString();
 
+                    setState(() {
+                      image = File(file.path);
+                      return;
+                    });
 
                     // Upload to Firebase storage
                     //Get a reference to storage root
                     Reference referenceRoot = FirebaseStorage.instance.ref();
                     Reference referenceDirImages =
-                    referenceRoot.child('images');
-
+                        referenceRoot.child('images');
 
                     //Create a reference for the image to be stored
                     Reference referenceImageToUpload =
-                    referenceDirImages.child('name');
-
-
+                        referenceDirImages.child(const Uuid().v4());
+                    image = File(file.path);
                     //Handle errors/success
                     try {
                       //Store the file
-                      await referenceImageToUpload.putFile(File(file!.path));
+                      await referenceImageToUpload.putFile(image!);
                       //Success: get the download URL
                       imageUrl = await referenceImageToUpload.getDownloadURL();
                     } catch (error) {
-                      //Some error occurred
+                      print(error);
                     }
-
-
                   },
                 ),
               ],
@@ -176,8 +200,12 @@ class _NewPostState extends State<NewPost> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                       await post(_nameController.text, _foodNameController.text, _phoneNoController.text,
-                          _addressController.text, imageUrl);
+                      await post(
+                          _nameController.text,
+                          _foodNameController.text,
+                          _phoneNoController.text,
+                          _addressController.text,
+                          imageUrl);
 
                       Navigator.pop(context);
                     },

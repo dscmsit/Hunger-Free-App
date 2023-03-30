@@ -126,7 +126,7 @@ class _UserSetupState extends State<UserSetup> {
                           _formKey.currentState!.save();
                           addUserDetailsToDatabase(_name, _phoneNo, _address);
                           Navigator.pushReplacementNamed(
-                              context, RouteNames.userSetup);
+                              context, RouteNames.homeScreen);
                         }
                       },
                       child: const Text('Submit'),
