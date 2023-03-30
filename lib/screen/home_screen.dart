@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:no_hunger/model/food_item.dart';
-import 'package:no_hunger/screen/NavBar.dart';
 import 'package:no_hunger/utills/route_names.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -103,7 +104,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 5.0),
                   Text(_foodItems[index].food),
                   const SizedBox(height: 5.0),
-                  Text(_foodItems[index].phoneNo),
+                  GestureDetector(
+                      child: Text(_foodItems[index].phoneNo),
+                      onTap: () {
+                        Clipboard.setData(
+                            ClipboardData(text: _foodItems[index].phoneNo));
+                        Fluttertoast.showToast(
+                          msg: 'Number Copied',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }),
                   const SizedBox(height: 5.0),
                   Text(_foodItems[index].address),
                   const SizedBox(height: 5.0),
